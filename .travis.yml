@@ -2,5 +2,17 @@ language: node_js
 services:
   - docker
 
+install:
+  mkdir tools
+  wget -O tools/terraform.zip https://releases.hashicorp.com/terraform/0.8.4/terraform_0.8.4_linux_amd64.zip
+  wget -O tools/packer.zip https://releases.hashicorp.com/packer/0.12.2/packer_0.12.2_linux_amd64.zip
+  wget -O tools/vault.zip https://releases.hashicorp.com/vault/0.6.4/vault_0.6.4_linux_amd64.zip
+  unzip tools/terraform.zip -d /usr/bin
+  unzip tools/packer.zip -d /usr/bin
+  unzip tools/vault.zip -d /usr/bin
+  which terraform
+  which packer
+  which vault
+
 script:
   docker build -t test-app .
